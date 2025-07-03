@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fading Content</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="jquey.js"></script>
+    </head>
+    <body>
+        <div id="error"></div>
+        <div id="sucess"></div>
+        <div class="wraper">
+            <div class="formelement">
+                <label for="Email">Email</label>
+                <input type="email" name="Email" id="Email">
+            </div>
+            <div class="formelement">
+                <label for="Phone">Phone No</label>
+                <input type="text" name="Phone" id="Phone">
+            </div>
+            <div class="formelement">
+                <label for="Password">Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="formelement">
+                <label for="Confirm-Password">Confirm-Password</label>
+                <input type="password" name="Confirm-Password"
+                    id="Confirm-Password">
+            </div>
+            <input id="submitbt" type="submit">
+        </div>
+
+    </body>
+    
+    <script>
+
+
+        
+
+    var errormsg="";
+    var missfield="";
+    function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+   
+    
+   $("#submitbt").click(function(){
+
+   
+
+    if($("#Email").val() == ""){
+        missfield+="<p>Email not field</p>";
+    }
+    if($("#Phone").val() == ""){
+        missfield+="<p>Mob No. not field</p>";
+    }
+    if($("#password").val() == ""){
+        missfield+="<p>Password not field</p>";
+    }
+    
+     if(isEmail($("#Email").val()) == false ) {
+        errormsg += "<p>Email is not valid</p>";
+     }
+     
+     if( $.isNumeric($("#Phone").val()) == false  ) {
+     errormsg += "<p>Phone Number is not valid</p>";
+    }
+    if($("#password").val() != $("#Confirm-Password").val()){
+        errormsg += "<p>Password does not match</p>";
+    }
+    if(errormsg == ""){
+        $("#sucess").html("Your Registration has Sucessfully Done...!");
+    }
+    else{
+    $("#error").html(errormsg + missfield);
+}
+   });
+</script>
+</html>
